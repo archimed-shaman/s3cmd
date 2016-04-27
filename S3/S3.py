@@ -747,6 +747,9 @@ class S3(object):
             headers['x-amz-server-side-encryption'] = 'aws:kms'
             headers['x-amz-server-side-encryption-aws-kms-key-id'] = self.config.kms_key
 
+        if self.config.requester_pays:
+            headers['x-amz-request-payer'] = 'requester'
+
         if extra_headers:
             headers.update(extra_headers)
 
